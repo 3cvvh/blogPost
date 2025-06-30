@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class blogController extends Controller
 {
     public function index(){
         return view('blogspot',[
             'judul' => 'post | page',
-            'data' => [
-                [
-                    'judul' => 'adit sopo nya jawo',
-                    'author' => 'iyah',
-                    'isi' => 'iadqoijdioqjdiojqiowdji'
-                ],
-                [
-                    'judul' => 'wdwqjd',
-                    'author' => 'ioa',
-                    'isi' => 'iadqoijdioqjdiojqiowdji'
+            'data' => Blog::all()
                 ]
-                ]
+        );
+    }
+    public function single( Blog $blog){
+                return view('single',[
+                    'judul' => $blog->judul,
+                    'data' => $blog
+                ]);
+    }
+    public function authorpos(User $user){
+        return view('authorpos',[
+            'data' => $user->blog,
+            'judul' => $user->name
         ]);
+
     }
 }
