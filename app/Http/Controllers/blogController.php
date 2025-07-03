@@ -12,7 +12,7 @@ class blogController extends Controller
     public function index(){
         return view('blogspot',[
             'judul' => 'post | page',
-            'data' => Blog::all()
+            'data' => Blog::with(['author','cate'])->get(),
                 ]
         );
     }
@@ -24,7 +24,7 @@ class blogController extends Controller
     }
     public function authorpos(User $user){
         return view('authorpos',[
-            'data' => $user->blog,
+            'data' => $user->blog->load('cate'),
             'judul' => $user->name
         ]);
 

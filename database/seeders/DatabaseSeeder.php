@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'ai',
             'slug' => 'ai-'
         ]);
-        Blog::factory(200)->recycle(User::factory(20)->create())->create();
+        Blog::factory(2100)->recycle(User::factory(20)->create())->create();
     
     }
 }

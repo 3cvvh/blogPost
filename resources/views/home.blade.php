@@ -1,4 +1,3 @@
-@dd($data)
 <x-luhur>{{ $judul }}</x-luhur>
 <x-navbar></x-navbar>
 <body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex flex-col">
