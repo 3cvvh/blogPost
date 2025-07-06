@@ -12,8 +12,12 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      */
     public function byposts(category $category){
+        $data = $category->blog()->with(['author','cate']);
+        if(request('search')){
+            $data->where('judul', 'LIKE' ,'%' . request('search') . '%');
+        }
        return view('capost',[
-            'data' => $category->blog,
+            'data' => $data->get(),
             'judul' => $category->name
         ]);
     }

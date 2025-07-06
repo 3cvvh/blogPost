@@ -10,9 +10,13 @@ use Illuminate\Support\Arr;
 class blogController extends Controller
 {
     public function index(){
+        $data = Blog::with(['author','cate']);
+        if(request('search')){
+            $data->where('judul','LIKE', '%' . request('search') . '%');
+        }
         return view('blogspot',[
             'judul' => 'post | page',
-            'data' => Blog::with(['author','cate'])->get(),
+            'data' => $data->get()
                 ]
         );
     }
@@ -23,8 +27,12 @@ class blogController extends Controller
                 ]);
     }
     public function authorpos(User $user){
+        $data = $user->blog()->with(['author','cate']);
+        if(request('search')){
+            $data->where('judul', 'LIKE', '%' . request('search') . '%');
+        }
         return view('authorpos',[
-            'data' => $user->blog->load('cate'),
+            'data' => $data->get(),
             'judul' => $user->name
         ]);
 
