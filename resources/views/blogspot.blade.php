@@ -5,6 +5,8 @@
         <div class="container mx-auto py-8">
             <h1 class="text-5xl font-extrabold text-center text-blue-800 mb-10 drop-shadow">{{ $judul }}</h1>
             <x-search></x-search>
+            {{ $data->links() }}
+            <br>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ( $data as $post )
                     <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-shadow border-t-4 border-blue-400 flex flex-col">

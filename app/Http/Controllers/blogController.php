@@ -16,7 +16,7 @@ class blogController extends Controller
         }
         return view('blogspot',[
             'judul' => 'post | page',
-            'data' => $data->get()
+            'data' => $data->paginate(10)
                 ]
         );
     }
