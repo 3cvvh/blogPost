@@ -1,6 +1,8 @@
 <x-luhur>{{ $judul }}</x-luhur>
 <x-navbar></x-navbar>
-
+@if (session('berhasil'))
+    <h1>berhasil menambahkan akun</h1>
+@endif
 <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 dark:from-blue-900 dark:via-blue-800 dark:to-blue-700 py-8">
     <div class="w-full max-w-md bg-white/80 dark:bg-blue-900/70 rounded-2xl shadow-2xl backdrop-blur-md p-8 border border-blue-200 dark:border-blue-800">
         <div class="flex flex-col items-center mb-6">

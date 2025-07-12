@@ -7,6 +7,7 @@ use App\Http\Controllers\kontakController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\signController as sign;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\signController;
 
 Route::get('/',[homeController::class,'index']);
 Route::get('/post',[blogController::class,'index']);
@@ -16,3 +17,4 @@ Route::get('/author/{user:email}',[blogController::class,'authorpos']);
 Route::get('/cate_blog/{category:slug}',[CategoryController::class,'byposts']);
 Route::get('/login',[loginController::class,'index']);
 Route::get('/sign',[sign::class,'index']);
+Route::post('/sign',[sign::class,'store']);

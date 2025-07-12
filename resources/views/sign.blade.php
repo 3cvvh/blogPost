@@ -17,19 +17,31 @@
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-blue-700 dark:text-blue-200 mb-2 font-semibold">Nama Lengkap</label>
-                <input id="name" type="text" name="name" required autofocus class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="Nama Lengkap"/>
+                <input id="name" type="text" name="name" required autofocus class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="Nama Lengkap" value="{{ old('name') }}" />
+                @error('name')
+                    <h1>{{ $message }}</h1>
+                @enderror
             </div>
             <div class="mb-4">
                 <label for="username" class="block text-blue-700 dark:text-blue-200 mb-2 font-semibold">Username</label>
-                <input id="username" type="text" name="username" required class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="Username"/>
+                <input id="username" type="text" name="username" required class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="Username" value="{{ old('username') }}"/>
+                  @error('username')
+                    <h1>{{ $message }}</h1>
+                @enderror
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-blue-700 dark:text-blue-200 mb-2 font-semibold">Email</label>
-                <input id="email" type="email" name="email" required class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="you@email.com"/>
+                <input id="email" type="email" name="email" required class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="you@email.com" value="{{ old('email') }}" />
+                  @error('email')
+                    <h1>{{ $message }}</h1>
+                @enderror
             </div>
             <div class="mb-6">
                 <label for="password" class="block text-blue-700 dark:text-blue-200 mb-2 font-semibold">Password</label>
                 <input id="password" type="password" name="password" required class="w-full px-4 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-900 dark:text-white dark:border-blue-700 transition" placeholder="********"/>
+                  @error('password')
+                    <h1>{{ $message }}</h1>
+                @enderror
             </div>
             <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg">Registrasi</button>
         </form>
