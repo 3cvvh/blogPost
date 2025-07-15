@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\blogController;
+use App\Http\Controllers\blogdashController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\dashboardpostsController;
+use App\Http\Controllers\dashposts;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\kontakController;
 use App\Http\Controllers\loginController;
@@ -21,5 +24,8 @@ Route::get('/login',[loginController::class,'index'])->name('login')->middleware
 Route::get('/sign',[sign::class,'index']);
 Route::post('/sign',[sign::class,'store']);
 Route::post('/login',[loginController::class,'store']);
-Route::get('/dashboard',[dashboardController::class,'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
 Route::post('/logout',[loginController::class,'logout'])->name('logout');
+Route::resource('/dashboard/blogs', blogdashController::class)->middleware('auth');
