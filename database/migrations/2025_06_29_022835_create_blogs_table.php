@@ -23,7 +23,8 @@ return new class extends Migration
                 indexName:'cate_id_blogposts'
             );
             $table->text('isi');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

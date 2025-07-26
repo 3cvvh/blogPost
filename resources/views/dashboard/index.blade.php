@@ -1,18 +1,27 @@
 @extends('dashboard.main')
 @section('container')
+@if (session('berhasil'))
+    <h1>{{ session('berhasil') }}</h1>
+@endif
+@if (session('deleted'))
+    <h1>{{ session('deleted') }}</h1>
+@endif
+@if (session('edited'))
+    <h1>{{ session('edited') }}</h1>
+@endif
+@if (session('sotau'))
+    <h1>{{ session('sotau') }}</h1>
+@endif
 <div class="p-4 sm:p-6">
-    <!-- Header Section -->
     <div class="flex justify-between items-center mb-5">
         <h2 class="text-xl font-semibold text-gray-800">My Posts</h2>
-        <a href="/dashboard/posts/create" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 inline-flex items-center">
+        <a href="/dashboard/blogs/create" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 inline-flex items-center">
             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
             Create Post
         </a>
     </div>
-
-    <!-- Table Section -->
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left">
             <thead class="text-xs text-white uppercase bg-gray-800">
@@ -43,12 +52,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                 </svg>
                             </a>
-                            <a href="" class="inline-flex items-center p-1.5 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600" title="Edit">
+                            <a href="/dashboard/blogs/{{ $post->id }}\edit" class="inline-flex items-center p-1.5 text-sm text-white bg-yellow-500 rounded hover:bg-yellow-600" title="Edit">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                 </svg>
                             </a>
-                            <form action="" method="POST" class="inline">
+                            <form action="/dashboard/blogs/{{ $post->id }}" method="POST" class="inline">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="inline-flex items-center p-1.5 text-sm text-white bg-red-500 rounded hover:bg-red-600" 
