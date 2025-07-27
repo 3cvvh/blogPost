@@ -4,6 +4,11 @@
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="p-6">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">{{ $data->judul }}</h2>
+            @if (isset($data->gambar))
+                <img src="{{ asset('storage/' . $data->gambar) }}" alt="">
+            @else
+            <h1>gaada gambar</h1>
+            @endif
             
             <div class="flex space-x-4 mb-6">
                 <a href="/dashboard/blogs" class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors duration-200">

@@ -41,8 +41,12 @@ class blogdashController extends Controller
             'judul' => ['min:4','required'],
             'author_id' => ['integer'],
             'cate_id' => ['required','integer'],
-            'isi' => ['required','min:4','max:2000000000000000']
+            'isi' => ['required','min:4','max:2000000000000000'],
+            'gambar' => ['image']
         ]);
+        if($request->file('gambar')){
+            $data['gambar'] = $request->file('gambar')->store('blogs-img');
+        }
         Blog::create($data);
         return redirect('/dashboard/blogs')->with('berhasil','berhasil menambahkan data');
     }
@@ -69,7 +73,7 @@ class blogdashController extends Controller
     public function edit(Blog $blog)
     {
         if($blog->author->id !== auth()->user()->id){
-            abort(404);
+            return redirect('/dashboard/blogs')->with('sotau','sotau ajg');
         }
         return view('dashboard.edit',[
             'cate' => category::all(),
