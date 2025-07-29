@@ -7,7 +7,7 @@
                     <a href="/post" class="font-medium transition px-2 py-1 rounded {{ request()->is('post') ? 'bg-blue-100 text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">Postingan</a>
                     <a href="/cont" class="font-medium transition px-2 py-1 rounded {{ request()->is('cont') ? 'bg-blue-100 text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">Kontak</a>
                     @auth
-                        <a href="/dashboard" class="font-medium transition px-2 py-1 rounded {{ request()->is('dashboard') ? 'bg-blue-100 text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">dashboard</a>
+                        <a href="/dashboard" class="font-medium transition px-2 py-1 rounded {{ request()->is('dashboard*') ? 'bg-blue-100 text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">dashboard</a>
                     @endauth
                 </div>
                 @guest

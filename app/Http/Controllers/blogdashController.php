@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Expr\PostDec;
 
 use function Laravel\Prompts\error;
@@ -91,8 +92,15 @@ class blogdashController extends Controller
             'judul' => ['min:4','required'],
             'author_id' => ['integer'],
             'cate_id' => ['required','integer'],
-            'isi' => ['required','min:4','max:2000000000000000']
+            'isi' => ['required','min:4','max:2000000000000000'],
+            'gambar' => ['image']
         ]);
+        if($request->gambar){
+            if($blog->gambar == true){
+                Storage::delete($blog->gambar);
+            }
+            $data['gambar'] = $request->file('gambar')->store('blogs-img');
+        }
         Blog::where('id',$blog->id)->update($data);
         return redirect('/dashboard/blogs')->with('edited','berhasil mengedit');
     }
@@ -102,6 +110,9 @@ class blogdashController extends Controller
      */
     public function destroy(Blog $blog)
     {
+        if($blog->gambar == true){
+            Storage::delete($blog->gambar);
+        }
         Blog::destroy($blog->id);
         return redirect('/dashboard/blogs')->with('deleted','berhasil menghapus post');
     }

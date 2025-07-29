@@ -7,7 +7,7 @@
             @if (isset($data->gambar))
                 <img src="{{ asset('storage/' . $data->gambar) }}" alt="">
             @else
-            <h1>gaada gambar</h1>
+                <img src="https://ui-avatars.com/api/?name={{ $data->judul }}"
             @endif
             
             <div class="flex space-x-4 mb-6">

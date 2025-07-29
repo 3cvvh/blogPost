@@ -27,7 +27,8 @@
 
     <div>
         <label for="gambar" class="block font-semibold mb-1">Cover</label>
-        <input type="file" name="gambar" id="gambar" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+        <input type="file" name="gambar" onchange="previewimg()" multiple type="file" id="file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+          <img src="" class="img-preview img-fluid" alt="">
     </div>
     @error('gambar')
         <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
@@ -45,4 +46,18 @@
         <button type="submit" name="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition duration-200">Kirim</button>
     </div>
 </form>
+<script>
+    function previewimg() {
+        const image = document.querySelector('#file');
+        const imgpreview = document.querySelector('.img-preview');
+
+        imgpreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload = function(oFREvent) {
+            imgpreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 @endsection
+
