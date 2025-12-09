@@ -9,15 +9,15 @@ use Illuminate\Support\Arr;
 
 class blogController extends Controller
 {
-    public function index(){
-        $data = Blog::with(['author','cate']);
+        public function index(){
+        $data = Blog::with(['author','cate'])->latest(); //memanggil model blog beserta relasinya
         if(request('search')){
             $data->where('judul','LIKE', '%' . request('search') . '%');
+
         }
-        return view('blogspot',[
-            'judul' => 'post | page',
-            'data' => $data->paginate(10)
-                ]
+        $judul = "All Posts";
+        $data = $data->paginate(10);
+        return view('blogspot',compact('data','judul') //mengirim data ke view megunakan compact
         );
     }
     public function single( Blog $blog){

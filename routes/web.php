@@ -14,18 +14,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\signController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-Route::get('/',[homeController::class,'index']);
+Route::get('/',[homeController::class,'index'])->name('home');
 Route::get('/post',[blogController::class,'index']);
 Route::get('/cont',[kontakController::class,'index']);
 Route::get('/single/{blog:slug}',[blogController::class,'single']);
 Route::get('/author/{user:email}',[blogController::class,'authorpos']);
 Route::get('/cate_blog/{category:slug}',[CategoryController::class,'byposts']);
 Route::get('/login',[loginController::class,'index'])->name('login')->middleware('guest');
-Route::get('/sign',[sign::class,'index']);
+Route::get('/sign',[sign::class,'index'])->name('sign')->middleware('guest');
 Route::post('/sign',[sign::class,'store']);
-Route::post('/login',[loginController::class,'store']);
+Route::post('/login',[loginController::class,'store'])->name('login.attempt');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
 Route::post('/logout',[loginController::class,'logout'])->name('logout');
 Route::resource('/dashboard/blogs', blogdashController::class)->middleware('auth');
+Route::post('/sign',[loginController::class,'sign'])->name('sign.store');

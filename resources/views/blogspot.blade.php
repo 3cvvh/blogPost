@@ -1,6 +1,6 @@
-<x-luhur>{{ $judul }}</x-luhur>
+@extends('layouts.main')
 <body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex flex-col">
-<x-navbar></x-navbar>
+@section('content')
     <main class="flex-1">
         <div class="container mx-auto py-8">
             <h1 class="text-5xl font-extrabold text-center text-blue-800 mb-10 drop-shadow">{{ $judul }}</h1>
@@ -20,5 +20,5 @@
                 @endforeach
             </div>
         </div>
-    </main> 
-<x-handap></x-handap>
+    </main>
+@endsection
